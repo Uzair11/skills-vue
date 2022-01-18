@@ -1,30 +1,15 @@
 <template>
   <div class="contactUs">
-    <h1>This is an contact us page</h1>
-    <form @submit.prevent="onFormSubmit">
-      <input required type="text" v-model="formData.email" />
-      <br />
-      <input required type="text" v-model="formData.message" />
-      <br />
-      <button type="submit" value="Submit">submit</button>
-    </form>
+    <ContactForm />
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import ContactForm from '../components/ContactForm.vue';
+
 export default {
-  data() {
-    return {
-      formData: {
-        email: '',
-        message: '',
-      },
-    };
-  },
-  methods: {
-    onFormSubmit() {
-      console.log(this.formData);
-    },
+  components: {
+    ContactForm,
   },
 };
 </script>
