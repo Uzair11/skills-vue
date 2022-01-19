@@ -58,16 +58,12 @@ export default {
       this.isSubmitting = true;
       try {
         await this.axios.post('https://enociv9ekmecyez.m.pipedream.net', payload);
-        this.isSubmitting = false;
         this.messageSent = true;
       } catch (error) {
-        this.isSubmitting = false;
         this.messageFail = false;
-        console.log(error);
       }
+      this.isSubmitting = false;
     },
   },
 };
 </script>
-
-<style></style>

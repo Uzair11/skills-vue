@@ -5,9 +5,11 @@ const mockResponse = {
   info: '...mock response...',
   success: true,
 };
+// mocking an axios instace instead of the entire module
 const ax = axios.create();
 const mock = new MockAdapter(ax);
 
+// mock post overrides axios.post when requested on given url and returns a mockResponse
 mock.onPost('https://enociv9ekmecyez.m.pipedream.net').reply(200, mockResponse);
 
 describe('ContactForm.vue', () => {
@@ -18,8 +20,9 @@ describe('ContactForm.vue', () => {
       message: 'test message.',
     });
 
-    expect(response.data.success).toEqual(true);
+    expect(response.data.success).toEqual(true); // test passes if response contains success: true
   });
 });
 
+// resetting mocks so that they dont effect other tests in the future
 jest.resetAllMocks();
