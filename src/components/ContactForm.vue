@@ -28,23 +28,21 @@ export default {
     };
   },
   methods: {
-    onFormSubmit() {
+    async onFormSubmit() {
       this.isSubmitting = true;
-      this.axios
-        .post('https://enociv9ekmecyez.m.pipedream.net', {
+      try {
+        await this.axios.post('https://enociv9ekmecyez.m.pipedream.net', {
           subject: this.subject,
           email: this.formData.email,
           message: this.formData.message,
-        })
-        .then(() => {
-          this.isSubmitting = false;
-          this.messageSent = true;
-        })
-        .catch((error) => {
-          this.isSubmitting = false;
-          this.messageFail = false;
-          console.log(error);
         });
+        this.isSubmitting = false;
+        this.messageSent = true;
+      } catch (error) {
+        this.isSubmitting = false;
+        this.messageFail = false;
+        console.log(error);
+      }
     },
   },
 };
