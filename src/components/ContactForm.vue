@@ -28,14 +28,15 @@
         :disabled="isSubmitting ? true : false"
         type="submit"
         value="Submit"
+        id="submitButton"
         class="btn btn-primary"
       >
         Submit
       </button>
     </form>
   </div>
-  <h3 v-if="messageSent">email sent 👍</h3>
-  <h3 v-if="messageFail">failed to send email 😟</h3>
+  <h3 v-if="messageSent" id="successInfo" class="mt-5">email sent 👍</h3>
+  <h3 v-if="messageFail" id="failInfo" class="mt-5">failed to send email 😟</h3>
 </template>
 
 <script>
