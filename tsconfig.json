@@ -35,7 +35,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-  ],
+, "tests/unit/contact_submit_to_mock_api.spec.ts"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,7 +1,7 @@
 <template>
   <div class="contactForm">
     <h1>This is an contact us page</h1>
-    <form @submit.prevent="onFormSubmit" class="mx-auto px-5" style="width: 500px">
+    <form @submit.prevent="FormSubmit" class="mx-auto px-5" style="max-width: 500px">
       <div class="mb-3 mt-5">
         <label for="emailInput" class="form-label">Email address</label>
         <input
@@ -53,7 +53,7 @@ export default {
     };
   },
   methods: {
-    async onFormSubmit(payload) {
+    async FormSubmit(payload) {
       this.isSubmitting = true;
       try {
         await this.axios.post('https://enociv9ekmecyez.m.pipedream.net', payload);

@@ -1,22 +1,24 @@
 import axios from 'axios';
-import ContactForm from '../../src/components/ContactForm.vue';
+import MockAdapter from 'axios-mock-adapter';
 
-jest.mock('axios');
+const mockResponse = {
+  info: '...mock response...',
+  success: true,
+};
+const ax = axios.create();
+const mock = new MockAdapter(ax);
 
-it('sends a post request to mock api with email, message and subject', async () => {
-  (axios.post as jest.Mock).mockResolvedValue({
-    info: '...Some info...',
-    success: true,
-  });
+mock.onPost('https://enociv9ekmecyez.m.pipedream.net').reply(200, mockResponse);
 
-  const response = await ContactForm?.methods?.FormSubmit({
-    subject: 'skills-vue Submission',
-    email: 'test@gmail.com',
-    message: 'this is my song and no one can take it away.',
-  });
+describe('ContactForm.vue', () => {
+  it('sends a post request to mock api with email, message and subject', async () => {
+    const response = await ax.post('https://enociv9ekmecyez.m.pipedream.net', {
+      subject: 'skills-vue Submission',
+      email: 'test@gmail.com',
+      message: 'test message.',
+    });
 
-  expect(response).toContain({
-    success: true,
+    expect(response.data.success).toEqual(true);
   });
 });
 
